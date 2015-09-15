@@ -16,6 +16,6 @@
 #import <SDWebImageManager.h>
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
-
+#import <HMSegmentedControl.h>
 
 #endif /* BridgingHeader_h */

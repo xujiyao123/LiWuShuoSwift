@@ -9,6 +9,11 @@
 import UIKit
 let NavColor = UIColor(red:0.97, green:0.31, blue:0.31, alpha:1)
 
+let ScreenWidht = UIScreen.mainScreen().bounds.width
+let ScreenHight = UIScreen.mainScreen().bounds.height
+let ViewHeight = ScreenHight - 64 - 49
+
+
 
 class InterFace: NSObject {
 

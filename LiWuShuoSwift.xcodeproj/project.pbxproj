@@ -33,6 +33,7 @@
 		B7D3A3921BA6A8FF008634B9 /* TypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D3A3901BA6A8FF008634B9 /* TypeViewController.xib */; };
 		B7D3A3951BA6A90A008634B9 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3A3931BA6A90A008634B9 /* MyViewController.swift */; };
 		B7D3A3961BA6A90A008634B9 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D3A3941BA6A90A008634B9 /* MyViewController.xib */; };
+		B7E184F61BA6BBEF002E7169 /* SegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E184F51BA6BBEF002E7169 /* SegView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		B7D3A3901BA6A8FF008634B9 /* TypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeViewController.xib; sourceTree = "<group>"; };
 		B7D3A3931BA6A90A008634B9 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		B7D3A3941BA6A90A008634B9 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
+		B7E184F51BA6BBEF002E7169 /* SegView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		B7D3A3471BA68387008634B9 /* LiWuShuoSwift */ = {
 			isa = PBXGroup;
 			children = (
+				B7E184F31BA6BBBA002E7169 /* Views */,
 				B7D3A3601BA696FE008634B9 /* Controllers */,
 				B7D3A35F1BA696DC008634B9 /* Others */,
 				B7D3A35E1BA696C7008634B9 /* Headers */,
@@ -210,6 +213,22 @@
 				B7D3A3941BA6A90A008634B9 /* MyViewController.xib */,
 			);
 			name = My;
+			sourceTree = "<group>";
+		};
+		B7E184F31BA6BBBA002E7169 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7E184F41BA6BBC9002E7169 /* Home */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B7E184F41BA6BBC9002E7169 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B7E184F51BA6BBEF002E7169 /* SegView.swift */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 		CD57F11CD83E7D751340F042 /* Frameworks */ = {
@@ -345,6 +364,7 @@
 				B7D3A3911BA6A8FF008634B9 /* TypeViewController.swift in Sources */,
 				B7D3A37A1BA6A339008634B9 /* SnapKit.swift in Sources */,
 				B7D3A3731BA6A339008634B9 /* ConstraintItem.swift in Sources */,
+				B7E184F61BA6BBEF002E7169 /* SegView.swift in Sources */,
 				B7D3A38D1BA6A8F2008634B9 /* ItemViewController.swift in Sources */,
 				B7D3A37B1BA6A339008634B9 /* View+SnapKit.swift in Sources */,
 				B7D3A37E1BA6A845008634B9 /* InterFace.swift in Sources */,
