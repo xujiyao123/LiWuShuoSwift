@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate ,UIScrollViewDelegate {
+class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate ,UIScrollViewDelegate  {
     
     var seg : SegView!
     var mainScrollView :UIScrollView!
@@ -19,16 +19,47 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
     var subtableView4 : UITableView!
     var subtableView5 : UITableView!
 
+    var scrollerDataSources = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.whiteColor()
           
         self.didLoadView()
         
+        self.loadData()
+        
         // Do any additional setup after loading the view.
     }
+    func loadData() {
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("homeScrollerDataCallBack:"), name: "HOME_SCROLLER_DATA", object: nil )
+        
+         HomeScrollerModel.loadscrollerData()
+        
+        
+    }
+    func homeScrollerDataCallBack(result:NSNotification) -> Void {
+        
+       
+        self.scrollerDataSources = result.object as! NSMutableArray
+        mainTableView.reloadData()
+    }
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == mainTableView {
+            
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                   let cell = tableView.dequeueReusableCellWithIdentifier("scrollerCell", forIndexPath: indexPath) as! ScrollewTableViewCell
+                    cell.drawCellWitharray(self.scrollerDataSources)
+                    
+                    return cell
+                    
+                }
+            }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("maincell", forIndexPath: indexPath)
             
@@ -70,7 +101,44 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         return error
     
     }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+          if indexPath.row == 0 {
+            
+                return 150
+            }
+        }
+        
+        
+        return 40
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if tableView == mainTableView {
+                     return 2
+            
+        }
+        return 1
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if tableView == mainTableView {
+            if section == 0 {
+                if self.scrollerDataSources.count != 0 {
+
+                return 2
+                }
+            }else {
+                return 10
+            }
+            
+        }
+        
         return 10
     }
     override func didReceiveMemoryWarning() {
@@ -141,18 +209,19 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         self.view.addSubview(seg)
         
         
-        mainScrollView = UIScrollView(frame: CGRectMake(0, 44, ScreenWidht, ScreenHight - 64 - 49))
+        mainScrollView = UIScrollView(frame: CGRectMake(0, 35, ScreenWidht, ScreenHight - 64 - 49))
         mainScrollView.showsHorizontalScrollIndicator = false;
         mainScrollView.pagingEnabled = true;
         mainScrollView.delegate = self
-        mainScrollView.contentSize = CGSizeMake(ScreenWidht * 2 , ScreenHight - 64 - 49);
+        mainScrollView.contentSize = CGSizeMake(ScreenWidht * 6 , ScreenHight - 64 - 49);
         self.view.addSubview(mainScrollView)
         
         mainTableView = UITableView(frame: CGRectMake(0, 0, ScreenWidht, ViewHeight), style: UITableViewStyle.Grouped)
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "maincell")
-        mainScrollView.addSubview(mainTableView)
+        mainTableView.registerClass(ScrollewTableViewCell.self, forCellReuseIdentifier: "scrollerCell")
+             mainScrollView.addSubview(mainTableView)
         
         subtableView1 = UITableView(frame:CGRectMake(ScreenWidht, 0, ScreenWidht, ViewHeight))
         subtableView2 = UITableView(frame:CGRectMake(ScreenWidht * 2, 0, ScreenWidht, ViewHeight))

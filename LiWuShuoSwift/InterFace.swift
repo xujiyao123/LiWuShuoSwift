@@ -14,6 +14,11 @@ let ScreenHight = UIScreen.mainScreen().bounds.height
 let ViewHeight = ScreenHight - 64 - 49
 
 
+let HOME_SCROLLER_INTERFACE = "http://api.liwushuo.com/v2/banners?channel=iOS"
+
+
+
+
 
 class InterFace: NSObject {
 

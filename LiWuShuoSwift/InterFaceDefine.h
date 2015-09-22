@@ -8,6 +8,7 @@
 
 #ifndef CityGuide_InterFaceDefine_h
 #define CityGuide_InterFaceDefine_h
+
 //
 //精选 http://api.liwushuo.com/v2/channels/100/items?ad=1&gender=1&generation=1&limit=20&offset=0
 //
@@ -28,6 +29,7 @@
 //push http://api.liwushuo.com/v2/item_subcategories/6/items?limit=20&offset=0
 //
 //专题 http://api.liwushuo.com/v2/collections?limit=6&offset=0
+//push http://api.liwushuo.com/v2/collections/131/posts?gender=1&generation=1&limit=20&offset=0%20
 //
 //单品http://api.liwushuo.com/v2/items?gender=1&generation=1&limit=20&offset=0
 //push http://api.liwushuo.com/v2/items/1031058/comments?limit=20&offset=0

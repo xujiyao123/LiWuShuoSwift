@@ -17,5 +17,7 @@
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
 #import <HMSegmentedControl.h>
+#import "ScrollewTableViewCell.h"
+#import "ScrollerModelHeader.h"
 
 #endif /* BridgingHeader_h */
