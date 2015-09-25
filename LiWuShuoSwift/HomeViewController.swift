@@ -23,7 +23,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
     var subtableView5 : UITableView!
 
     var scrollerDataSources = NSMutableArray()
-    var mainDataSources = NSMutableDictionary()
+    var mainDataSources = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,20 +44,11 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
          HomeScrollerModel.loadscrollerData()
         
         HomeContentModel.loadContentData()
-        HomeContentModel.loadPData()
-        HomeContentModel.loadPOData()
-        HomeContentModel.loadFdata()
-        HomeContentModel.loadSData()
-        HomeContentModel.loadYData()
+//        HomeContentModel.loadPData()
+
         
     }
-    func typeForKey(type: Int ) -> NSMutableArray {
-        
-        let data = self.mainDataSources.objectForKey("http://api.liwushuo.com/v2/channels/\(type)/items?generation=1&gender=1&limit=20&ad=1&offset=20")
-     
-        return data?.objectForKey("data") as! NSMutableArray
-  
-    }
+
     
     
     func homeScrollerDataCallBack(result:NSNotification) -> Void {
@@ -67,13 +58,10 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         mainTableView.reloadData()
     }
     func homeContentDataCaLLBack(result:NSNotification) ->Void {
-        let data = result.object as! NSDictionary
         
-        if mainDataSources.objectForKey(result.object?.objectForKey("next_url") as! String) == nil {
-            
-            self.mainDataSources.setObject(data , forKey:result.object?.objectForKey("next_url") as! String)
-            
-        }
+        
+            self.mainDataSources = result.object?.objectForKey("data") as! NSMutableArray
+        
               mainTableView.reloadData()
         
     }
@@ -94,42 +82,37 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
             if indexPath.section == 1{
                 
                 let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-                cell.drawCellWithModel(typeForKey(100)[indexPath.row] as! HomeContentModel)
+                cell.drawCellWithModel(self.mainDataSources[indexPath.row] as! HomeContentModel)
                 return cell
             }
             
     
         }
-        print(tableView)
+       
          if tableView == subtableView1 {
-            var cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-          cell = tableView.dequeueReusableCellWithIdentifier("sub1", forIndexPath: indexPath) as! ContentTableViewCell
-            cell.drawCellWithModel(typeForKey(111)[indexPath.row] as! HomeContentModel)
+            let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
             
             return cell
         }
          if tableView == subtableView2 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-            cell.drawCellWithModel(typeForKey(118)[indexPath.row] as! HomeContentModel)
             
             return cell
         }
          if tableView == subtableView3 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
             
-            cell.drawCellWithModel(typeForKey(121)[indexPath.row] as! HomeContentModel)
-            return cell
+                      return cell
         }
          if tableView == subtableView4 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-            cell.drawCellWithModel(typeForKey(123)[indexPath.row] as! HomeContentModel)
+          
             
             return cell
         }
          if tableView == subtableView5 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-            cell.drawCellWithModel(typeForKey(120)[indexPath.row] as! HomeContentModel)
-            return cell
+                    return cell
         }
         
         let error = UITableViewCell()
@@ -175,12 +158,13 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
                 return 2
                 }
             }else {
-                return typeForKey(100).count == 0 ? 0 : typeForKey(100).count
-                
+                return 20
             }
-            
         }
-        return self.mainDataSources.count == 6 ? 20 : 0
+        if tableView == subtableView1 {
+            return 10
+        }
+        return 20
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -233,6 +217,19 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         }
         
         
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == mainTableView {
+            if indexPath.section == 1 {
+            let vc = HomeContentViewController()
+            vc.webUrl = dataSourceWithArray(mainDataSources, indexpatch: indexPath).content_url
+            self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    func dataSourceWithArray(array:NSMutableArray , indexpatch:NSIndexPath) -> HomeContentModel{
+        let model = array[indexpatch.row] as! HomeContentModel
+        return model
     }
     
     func didLoadView() {
