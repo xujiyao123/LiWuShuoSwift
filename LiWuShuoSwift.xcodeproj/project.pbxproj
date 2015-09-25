@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AC04BCED626AF70FD3262CFF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 739ECACC688DDFD9F5331E4E /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		B78E0B621BB4F90300DF0356 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		B78E0B631BB4F90300DF0356 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		B798472D1BAD094000B6ED60 /* NetWorkRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B798472C1BAD094000B6ED60 /* NetWorkRequestHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		B798472F1BAD095400B6ED60 /* NetWorkRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B798472E1BAD095400B6ED60 /* NetWorkRequestInfo.swift */; settings = {ASSET_TAGS = (); }; };
 		B7B780871BAE63B6007B2CB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B780861BAE63B6007B2CB4 /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -49,6 +51,8 @@
 		65C9F00BCEC27D9DC6FEC986 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		739ECACC688DDFD9F5331E4E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5284BC48C4090C4408E1B6D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
+		B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 		B798472C1BAD094000B6ED60 /* NetWorkRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkRequestHelper.swift; sourceTree = "<group>"; };
 		B798472E1BAD095400B6ED60 /* NetWorkRequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkRequestInfo.swift; sourceTree = "<group>"; };
 		B7B780861BAE63B6007B2CB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -266,6 +270,8 @@
 				B7F4927F1BAEB1C50035E409 /* ScrollewTableViewCell.m */,
 				B7E184F51BA6BBEF002E7169 /* SegView.swift */,
 				B7F492811BAEB5A40035E409 /* ScrollerModelHeader.h */,
+				B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */,
+				B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -358,6 +364,7 @@
 				B7D3A38A1BA6A8DD008634B9 /* HomeViewController.xib in Resources */,
 				B7D3A3921BA6A8FF008634B9 /* TypeViewController.xib in Resources */,
 				B7D3A3501BA68387008634B9 /* Assets.xcassets in Resources */,
+				B78E0B631BB4F90300DF0356 /* ContentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +432,7 @@
 				B7D3A38D1BA6A8F2008634B9 /* ItemViewController.swift in Sources */,
 				B7D3A37B1BA6A339008634B9 /* View+SnapKit.swift in Sources */,
 				B7D3A37E1BA6A845008634B9 /* InterFace.swift in Sources */,
+				B78E0B621BB4F90300DF0356 /* ContentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

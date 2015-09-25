@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+
+
 class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate ,UIScrollViewDelegate  {
     
     var seg : SegView!
@@ -20,6 +23,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
     var subtableView5 : UITableView!
 
     var scrollerDataSources = NSMutableArray()
+    var mainDataSources = NSMutableDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +39,43 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("homeScrollerDataCallBack:"), name: "HOME_SCROLLER_DATA", object: nil )
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("homeContentDataCaLLBack:"), name: "HOME_CONTENT_DATA", object: nil)
         
          HomeScrollerModel.loadscrollerData()
         
+        HomeContentModel.loadContentData()
+        HomeContentModel.loadPData()
+        HomeContentModel.loadPOData()
+        HomeContentModel.loadFdata()
+        HomeContentModel.loadSData()
+        HomeContentModel.loadYData()
         
     }
+    func typeForKey(type: Int ) -> NSMutableArray {
+        
+        let data = self.mainDataSources.objectForKey("http://api.liwushuo.com/v2/channels/\(type)/items?generation=1&gender=1&limit=20&ad=1&offset=20")
+     
+        return data?.objectForKey("data") as! NSMutableArray
+  
+    }
+    
+    
     func homeScrollerDataCallBack(result:NSNotification) -> Void {
         
        
         self.scrollerDataSources = result.object as! NSMutableArray
         mainTableView.reloadData()
+    }
+    func homeContentDataCaLLBack(result:NSNotification) ->Void {
+        let data = result.object as! NSDictionary
+        
+        if mainDataSources.objectForKey(result.object?.objectForKey("next_url") as! String) == nil {
+            
+            self.mainDataSources.setObject(data , forKey:result.object?.objectForKey("next_url") as! String)
+            
+        }
+              mainTableView.reloadData()
+        
     }
     
     
@@ -60,40 +91,44 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
                     
                 }
             }
+            if indexPath.section == 1{
+                
+                let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
+                cell.drawCellWithModel(typeForKey(100)[indexPath.row] as! HomeContentModel)
+                return cell
+            }
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("maincell", forIndexPath: indexPath)
-            
+    
+        }
+        print(tableView)
+         if tableView == subtableView1 {
+            var cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
+          cell = tableView.dequeueReusableCellWithIdentifier("sub1", forIndexPath: indexPath) as! ContentTableViewCell
+            cell.drawCellWithModel(typeForKey(111)[indexPath.row] as! HomeContentModel)
             
             return cell
         }
-        else if tableView == subtableView1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("sub1", forIndexPath: indexPath)
-            
-            
-            return cell
-        }
-        else if tableView == subtableView2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("sub2", forIndexPath: indexPath)
-            
+         if tableView == subtableView2 {
+            let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
+            cell.drawCellWithModel(typeForKey(118)[indexPath.row] as! HomeContentModel)
             
             return cell
         }
-        else if tableView == subtableView3 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("sub3", forIndexPath: indexPath)
+         if tableView == subtableView3 {
+            let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
             
+            cell.drawCellWithModel(typeForKey(121)[indexPath.row] as! HomeContentModel)
+            return cell
+        }
+         if tableView == subtableView4 {
+            let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
+            cell.drawCellWithModel(typeForKey(123)[indexPath.row] as! HomeContentModel)
             
             return cell
         }
-        else if tableView == subtableView4 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("sub4", forIndexPath: indexPath)
-            
-            
-            return cell
-        }
-        else if tableView == subtableView5 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("sub5", forIndexPath: indexPath)
-            
-            
+         if tableView == subtableView5 {
+            let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
+            cell.drawCellWithModel(typeForKey(120)[indexPath.row] as! HomeContentModel)
             return cell
         }
         
@@ -105,18 +140,23 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         return 0.1
     }
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.1
+        return 10
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-          if indexPath.row == 0 {
-            
-                return 150
+        if tableView == mainTableView {
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    
+                    return IS_IPHONE5() ? 150:190
+                }
+                return 60
+            }else {
+             return  IS_IPHONE5() ? 130:190
+                
             }
+        }else {
+            return IS_IPHONE5() ? 130:190
         }
-        
-        
-        return 40
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if tableView == mainTableView {
@@ -127,6 +167,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+       
         if tableView == mainTableView {
             if section == 0 {
                 if self.scrollerDataSources.count != 0 {
@@ -134,12 +175,12 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
                 return 2
                 }
             }else {
-                return 10
+                return typeForKey(100).count == 0 ? 0 : typeForKey(100).count
+                
             }
             
         }
-        
-        return 10
+        return self.mainDataSources.count == 6 ? 20 : 0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -153,6 +194,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
             }
             if scrollView.contentOffset.x == ScreenWidht {
                   seg.seg.setSelectedSegmentIndex(1, animated: true)
+               
             }
             if scrollView.contentOffset.x == ScreenWidht * 2 {
                   seg.seg.setSelectedSegmentIndex(2, animated: true)
@@ -219,7 +261,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         mainTableView = UITableView(frame: CGRectMake(0, 0, ScreenWidht, ViewHeight), style: UITableViewStyle.Grouped)
         mainTableView.delegate = self
         mainTableView.dataSource = self
-        mainTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "maincell")
+        mainTableView.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "maincell")
         mainTableView.registerClass(ScrollewTableViewCell.self, forCellReuseIdentifier: "scrollerCell")
              mainScrollView.addSubview(mainTableView)
         
@@ -228,11 +270,11 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         subtableView3 = UITableView(frame:CGRectMake(ScreenWidht * 3, 0, ScreenWidht, ViewHeight))
         subtableView4 = UITableView(frame:CGRectMake(ScreenWidht * 4, 0, ScreenWidht, ViewHeight))
         subtableView5 = UITableView(frame:CGRectMake(ScreenWidht * 5, 0, ScreenWidht, ViewHeight))
-        subtableView1.registerClass(UITableViewCell.self, forCellReuseIdentifier: "sub1")
-        subtableView2.registerClass(UITableViewCell.self, forCellReuseIdentifier: "sub2")
-        subtableView3.registerClass(UITableViewCell.self, forCellReuseIdentifier: "sub3")
-        subtableView4.registerClass(UITableViewCell.self, forCellReuseIdentifier: "sub4")
-        subtableView5.registerClass(UITableViewCell.self, forCellReuseIdentifier: "sub5")
+        subtableView1.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub1")
+        subtableView2.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub2")
+        subtableView3.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub3")
+        subtableView4.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub4")
+        subtableView5.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub5")
         subtableView1.delegate = self
         subtableView2.delegate = self
         subtableView3.delegate = self

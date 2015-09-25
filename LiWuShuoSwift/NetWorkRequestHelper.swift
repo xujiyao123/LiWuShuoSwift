@@ -44,7 +44,7 @@ class NetWorkRequestHelper: NSObject {
         manager?.requestSerializer = AFJSONRequestSerializer()
     
 
-        
+    
         
         
     }

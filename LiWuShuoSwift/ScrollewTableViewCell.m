@@ -11,19 +11,31 @@
 #import <UIImageView+WebCache.h>
 #import "ScrollerModelHeader.h"
 
+
+
 @implementation ScrollewTableViewCell
+- (CGFloat)scrollerHeight {
+    
+    if (ScreenWidth == 320) {
+        return 150;
+    }else {
+        return 190;
+    }
+    
+}
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, -10, ScreenWidth  , 160 )];
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth  , [self scrollerHeight] )];
         
         self.scrollView.showsHorizontalScrollIndicator = NO;
         self.scrollView.pagingEnabled = YES;
         [self addSubview:_scrollView];
         [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(runTimePage) userInfo:nil repeats:YES];
         
-        _page = [[UIPageControl alloc] initWithFrame:CGRectMake(-10, 135  ,Width * 320,Height * 10)];
+        _page = [[UIPageControl alloc] initWithFrame:CGRectMake(-10, [self scrollerHeight] -20  ,ScreenWidth,Height * 10)];
        
         //设置点的颜色
         _page.currentPageIndicatorTintColor = [UIColor redColor];
@@ -56,13 +68,13 @@
     self.modelcount = model.count;
     
         _page.numberOfPages = model.count;
-    self.scrollView.contentSize = CGSizeMake(ScreenWidth * model.count , 160 *Height);
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth * model.count , 0);
     for (int i  = 0 ; i < model.count ; i++) {
-        _image = [[UIImageView alloc]initWithFrame:CGRectMake(320 * i  * Width, 0 * Height, 320 * Width, 160 * Height)];
-          _image.contentMode = UIViewContentModeScaleAspectFit;
-        _image.clipsToBounds = YES;
+        _image = [[UIImageView alloc]initWithFrame:CGRectMake(ScreenWidth * i , 0 , ScreenWidth , [self scrollerHeight])];
+      //    _image.contentMode = UIViewContentModeScaleAspectFit;
+     //   _image.clipsToBounds = YES;
         _image.userInteractionEnabled = YES;
-        _image.backgroundColor = [UIColor whiteColor];
+   //     _image.backgroundColor = [UIColor redColor];
         
         ScrollerModelHeader * helder = [[ScrollerModelHeader alloc]init];
         helder = (ScrollerModelHeader *)model[i];
@@ -73,7 +85,7 @@
     
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         //  button.backgroundColor = [UIColor redColor];
-        button.frame = CGRectMake(320 * i  * Width, 0 * Height, 320 * Width, 160 * Height);
+        button.frame = CGRectMake(ScreenWidth * i  , 0 * Height, ScreenWidth , [self scrollerHeight]);
     //    button.titleLabel.text = [model[i] webURL];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         //    button.titleLabel.text = [dataSource[i]oid] ;
@@ -95,7 +107,7 @@
 {
     NSInteger page = _page.currentPage; // 获取当前的page
     
-    [_scrollView scrollRectToVisible:CGRectMake(Width * 320 * (page),0, Width * 320, Height * 110) animated:NO]; // 触摸pagecontroller那个点点 往后翻一页 +1
+    [_scrollView scrollRectToVisible:CGRectMake(ScreenWidth* (page),0, ScreenWidth, 160) animated:NO]; // 触摸pagecontroller那个点点 往后翻一页 +1
     [_page addTarget:self action:@selector(runTimePage) forControlEvents:UIControlEventValueChanged];
 }
 // 定时器绑定的方法
@@ -107,7 +119,7 @@
     _page.currentPage = page;
     
     
-    [_scrollView setContentOffset:CGPointMake(_page.currentPage * 320, 0) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(_page.currentPage * ScreenWidth, 0) animated:YES];
     [self turnPage];
 }
 - (void)buttonAction:(UIButton*)sender

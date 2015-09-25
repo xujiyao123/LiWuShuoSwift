@@ -16,6 +16,17 @@ let ViewHeight = ScreenHight - 64 - 49
 
 let HOME_SCROLLER_INTERFACE = "http://api.liwushuo.com/v2/banners?channel=iOS"
 
+func HOME_CONTENT_INTERFACE(TYPE_CODE:Int) -> String {
+    return "http://api.liwushuo.com/v2/channels/\(TYPE_CODE)/items?ad=1&gender=1&generation=1&limit=20&offset=0"
+}
+func IS_IPHONE5() ->Bool {
+    if ScreenWidht == 320 {
+        return true
+    }else {
+        return false
+    }
+}
+
 
 
 
