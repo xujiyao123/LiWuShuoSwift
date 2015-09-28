@@ -15,9 +15,10 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <SDWebImageManager.h>
 #import <UIImageView+WebCache.h>
+#import <MJRefresh.h>
 #import <UIButton+WebCache.h>
 #import <HMSegmentedControl.h>
 #import "ScrollewTableViewCell.h"
 #import "ScrollerModelHeader.h"
-
+#import "MJChiBaoZiHeader.h"
 #endif /* BridgingHeader_h */

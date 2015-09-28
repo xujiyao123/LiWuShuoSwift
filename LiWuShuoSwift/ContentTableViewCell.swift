@@ -17,6 +17,7 @@ class ContentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = UITableViewCellSelectionStyle.None
         
       // self.contentImageView.backgroundColor = UIColor.redColor()
         self.contentImageView.layer.masksToBounds = true
@@ -30,7 +31,10 @@ class ContentTableViewCell: UITableViewCell {
     
     func drawCellWithModel(model:HomeContentModel) {
         
+        
+        if model.cover_image_url != nil {
         self.contentImageView.sd_setImageWithURL(NSURL(string: model.cover_image_url!))
+        }
         self.contentLabel.text = model.title
         
         

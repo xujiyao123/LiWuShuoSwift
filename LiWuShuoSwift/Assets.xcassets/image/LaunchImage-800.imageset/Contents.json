@@ -1,10 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
       "filename" : "LaunchImage-800-667h@2x.png",
-      "subtype" : "667h",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "LaunchImage-800-Portrait-736h@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

@@ -17,17 +17,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+    //   NSBundle.mainBundle().loadNibNamed("Launch Screen", owner: nil, options: nil)
+       
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+       
+        
+        
+        
         let tab = InterFace.CreateTabBar()
+        
+        NSThread.sleepForTimeInterval(2)
         
         window?.rootViewController = tab
         
         window?.makeKeyAndVisible()
+     
+        
+        
+      
               
         
         
         return true
+    }
+    func loadLunchView() {
+        
+        
+ 
+
+
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

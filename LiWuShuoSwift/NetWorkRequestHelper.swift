@@ -75,6 +75,45 @@ class NetWorkRequestHelper: NSObject {
         
         
     }
+    
+    
+    func sendAsyncRequestClouse(info:NetWorkRequestInfo ,clouse:(jsonResult:AnyObject? , error:NSError?) -> Void) {
+        
+        if info.state == NetWorkState.get {
+            
+            self.httpOperation = manager?.GET(info.urlStr!, parameters: nil, success: { (operation:AFHTTPRequestOperation, result:AnyObject) -> Void in
+                
+                
+                let jsonResult = try? NSJSONSerialization.JSONObjectWithData(operation.responseData!, options: NSJSONReadingOptions.MutableContainers)
+                
+                clouse(jsonResult: jsonResult, error: nil)
+                
+                
+                }, failure: { (operation:AFHTTPRequestOperation, error:NSError) -> Void in
+                    
+                    clouse(jsonResult: nil, error: error)
+                    
+            })
+            
+        }
+        
+        
+    }
+    
+    class func sendAsyncRequest(info:NetWorkRequestInfo,clouse:(jsonResult:AnyObject?,error:NSError?) ->Void) ->Void {
+        
+        let helper = NetWorkRequestHelper()
+        
+     
+      helper.sendAsyncRequestClouse(info) { (jsonResult, error) -> Void in
+        
+             clouse(jsonResult: jsonResult, error: error)
+        }
+        
+        
+    }
+    
+    
     func cancelRequest () {
         
         self.httpOperation?.cancel()

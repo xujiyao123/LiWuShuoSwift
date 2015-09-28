@@ -24,6 +24,18 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
 
     var scrollerDataSources = NSMutableArray()
     var mainDataSources = NSMutableArray()
+    var liwuDataSources = NSMutableArray()
+    var meishiDataSources = NSMutableArray()
+    var shumaDataSources = NSMutableArray()
+    var yundongDataSources = NSMutableArray()
+    var yuleDataSources = NSMutableArray()
+    
+    var mainMore:String?
+    var liwuMore:String?
+    var meishiMore: String?
+    var shumaMore: String?
+    var yundongMore:String?
+    var yuleMore: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +56,35 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
          HomeScrollerModel.loadscrollerData()
         
         HomeContentModel.loadContentData()
-//        HomeContentModel.loadPData()
+        HomeContentModel.loadLiWuData { (data) -> Void in
+            self.liwuDataSources = data.objectForKey("data") as! NSMutableArray
+            self.liwuMore = data.objectForKey("next_url") as? String
+            self.subtableView1.reloadData()
+        }
+        HomeContentModel.loadMeiShiData { (data) -> Void in
+            self.meishiDataSources = data.objectForKey("data") as! NSMutableArray
+            self.meishiMore = data.objectForKey("next_url") as? String
+            self.subtableView2.reloadData()
+        }
+        HomeContentModel.loadShuMaData { (data) -> Void in
+            self.shumaDataSources = data.objectForKey("data") as! NSMutableArray
+            self.shumaMore = data.objectForKey("next_url") as? String
+            self.subtableView3.reloadData()
+        }
+        HomeContentModel.loadYunDongData { (data) -> Void in
+            self.yundongDataSources = data.objectForKey("data") as! NSMutableArray
+            self.yundongMore = data.objectForKey("next_url") as? String
+            self.subtableView4.reloadData()
+        }
+        HomeContentModel.loadYuLeData { (data) -> Void in
+            self.yuleDataSources = data.objectForKey("data") as! NSMutableArray
+            self.yuleMore = data.objectForKey("next_url") as? String
+            self.subtableView5.reloadData()
+        }
 
         
     }
-
+  
     
     
     func homeScrollerDataCallBack(result:NSNotification) -> Void {
@@ -58,12 +94,9 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         mainTableView.reloadData()
     }
     func homeContentDataCaLLBack(result:NSNotification) ->Void {
-        
-        
             self.mainDataSources = result.object?.objectForKey("data") as! NSMutableArray
-        
+        self.mainMore = result.object?.objectForKey("next_url") as? String
               mainTableView.reloadData()
-        
     }
     
     
@@ -91,27 +124,28 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
        
          if tableView == subtableView1 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-            
+            cell.drawCellWithModel(self.liwuDataSources[indexPath.row] as! HomeContentModel)
             return cell
         }
          if tableView == subtableView2 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-            
+            cell.drawCellWithModel(self.meishiDataSources[indexPath.row] as! HomeContentModel)
             return cell
         }
          if tableView == subtableView3 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-            
+            cell.drawCellWithModel(self.shumaDataSources[indexPath.row] as! HomeContentModel)
                       return cell
         }
          if tableView == subtableView4 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
-          
+          cell.drawCellWithModel(self.yundongDataSources[indexPath.row] as! HomeContentModel)
             
             return cell
         }
          if tableView == subtableView5 {
             let cell = NSBundle.mainBundle().loadNibNamed("ContentTableViewCell", owner: nil, options: nil).first as! ContentTableViewCell
+            cell.drawCellWithModel(self.yuleDataSources[indexPath.row] as! HomeContentModel)
                     return cell
         }
         
@@ -158,13 +192,44 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
                 return 2
                 }
             }else {
-                return 20
+                if self.mainDataSources.count != 0 {
+                return mainDataSources.count
+                }
+                return 0
             }
         }
         if tableView == subtableView1 {
-            return 10
+            if liwuDataSources.count != 0 {
+                return liwuDataSources.count
+            }
+            return 0
         }
-        return 20
+
+        if tableView == subtableView2 {
+            if meishiDataSources.count != 0 {
+                return meishiDataSources.count
+            }
+            return 0
+        }
+        if tableView == subtableView3 {
+            if shumaDataSources.count != 0 {
+                return shumaDataSources.count
+            }
+            return 0
+        }
+        if tableView == subtableView4 {
+            if yundongDataSources.count != 0 {
+                return yundongDataSources.count
+            }
+            return 0
+        }
+        if tableView == subtableView5 {
+            if yuleDataSources.count != 0 {
+                return yuleDataSources.count
+            }
+            return 0
+        }
+        return 0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -222,25 +287,141 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         if tableView == mainTableView {
             if indexPath.section == 1 {
             let vc = HomeContentViewController()
+                vc.hidesBottomBarWhenPushed = true
             vc.webUrl = dataSourceWithArray(mainDataSources, indexpatch: indexPath).content_url
+                vc.cover_image = dataSourceWithArray(mainDataSources, indexpatch: indexPath).cover_image_url
             self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+        if tableView == subtableView1 {
+            let vc = HomeContentViewController()
+            vc.webUrl = dataSourceWithArray(liwuDataSources, indexpatch: indexPath).content_url
+            vc.cover_image = dataSourceWithArray(mainDataSources, indexpatch: indexPath).cover_image_url
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if tableView == subtableView2 {
+            let vc = HomeContentViewController()
+            vc.webUrl = dataSourceWithArray(meishiDataSources, indexpatch: indexPath).content_url
+            vc.cover_image = dataSourceWithArray(mainDataSources, indexpatch: indexPath).cover_image_url
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if tableView == subtableView3 {
+            let vc = HomeContentViewController()
+            vc.webUrl = dataSourceWithArray(shumaDataSources, indexpatch: indexPath).content_url
+            vc.cover_image = dataSourceWithArray(mainDataSources, indexpatch: indexPath).cover_image_url
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if tableView == subtableView4 {
+            let vc = HomeContentViewController()
+            vc.webUrl = dataSourceWithArray(yundongDataSources, indexpatch: indexPath).content_url
+            vc.cover_image = dataSourceWithArray(mainDataSources, indexpatch: indexPath).cover_image_url
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if tableView == subtableView5 {
+            let vc = HomeContentViewController()
+            vc.webUrl = dataSourceWithArray(yuleDataSources, indexpatch: indexPath).content_url
+            vc.cover_image = dataSourceWithArray(mainDataSources, indexpatch: indexPath).cover_image_url
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     func dataSourceWithArray(array:NSMutableArray , indexpatch:NSIndexPath) -> HomeContentModel{
+        
         let model = array[indexpatch.row] as! HomeContentModel
         return model
     }
+    func mainLoadMoreData() {
+        if self.mainMore == nil {
+            return
+        }else {
+        HomeContentModel.loadMoreData(self.mainMore!) { (data) -> Void in
+            self.mainDataSources.addObjectsFromArray(data.objectForKey("data") as! [HomeContentModel])
+            self.mainMore = data.objectForKey("next_url") as? String
+            self.mainTableView.reloadData()
+            self.mainTableView.footer.endRefreshing()
+            }
+        }
+    }
+    func liwuLoadMoreData() {
+        if liwuMore == nil {
+            return
+        }else
+        {
+        HomeContentModel.loadMoreData(self.liwuMore!) { (data) -> Void in
+            self.liwuDataSources.addObjectsFromArray(data.objectForKey("data") as! [HomeContentModel])
+            self.liwuMore = data.objectForKey("next_url") as? String
+            self.subtableView1.reloadData()
+            self.subtableView1.footer.endRefreshing()
+            }
+            }
+    }
+    func meishiLoadMoreData() {
+        if meishiMore == nil {
+            return
+        }else {
+        HomeContentModel.loadMoreData(self.meishiMore!) { (data) -> Void in
+            self.meishiDataSources.addObjectsFromArray(data.objectForKey("data") as! [HomeContentModel])
+            self.meishiMore = data.objectForKey("next_url") as? String
+            self.subtableView2.reloadData()
+            self.subtableView2.footer.endRefreshing()
+        }
+        }
+    }
+    func shumaLoadMoreData() {
+        if shumaMore == nil {
+            return
+        }else {
+        HomeContentModel.loadMoreData(self.shumaMore!) { (data) -> Void in
+            self.shumaDataSources.addObjectsFromArray(data.objectForKey("data") as! [HomeContentModel])
+            self.shumaMore = data.objectForKey("next_url") as? String
+            self.subtableView3.reloadData()
+            self.subtableView3.footer.endRefreshing()
+        }
+        }
+    }
+    func yundongLoadMoreData() {
+        if yundongMore == nil {
+            return
+        }else {
+        HomeContentModel.loadMoreData(self.yundongMore!) { (data) -> Void in
+            self.yundongDataSources.addObjectsFromArray(data.objectForKey("data") as! [HomeContentModel])
+            self.yundongMore = data.objectForKey("next_url") as? String
+            self.subtableView4.reloadData()
+            self.subtableView4.footer.endRefreshing()
+        }
+        }
+    }
+    func yuleLoadMoreData() {
+        if yuleMore == nil {
+            return
+        }else {
+        HomeContentModel.loadMoreData(self.yuleMore!) { (data) -> Void in
+            self.yuleDataSources.addObjectsFromArray(data.objectForKey("data") as! [HomeContentModel])
+            self.yuleMore = data.objectForKey("next_url") as? String
+            self.subtableView5.reloadData()
+            self.subtableView5.footer.endRefreshing()
+        }
+        }
+    }
+    //礼物 111
+    //美食 118
+    //数码 121
+    //运动 123
+    //娱乐 120
+    
     
     func didLoadView() {
         
         
         self.navigationController?.navigationBar.barTintColor = NavColor
-        let titleLabel = UILabel(frame: CGRectMake(10, 0, 120, 44))
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.textAlignment = NSTextAlignment.Center
-        titleLabel.text = "礼物说"
-        self.navigationItem.titleView = titleLabel
+        
+        self.title = "礼物说"
+        let attributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
         
         seg = SegView(frame: CGRectMake(0, 0, ScreenWidht, 35))
         seg.seg.addTarget(self, action: Selector("segAction:"), forControlEvents: UIControlEvents.ValueChanged)
@@ -248,25 +429,32 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         self.view.addSubview(seg)
         
         
-        mainScrollView = UIScrollView(frame: CGRectMake(0, 35, ScreenWidht, ScreenHight - 64 - 49))
+        mainScrollView = UIScrollView(frame: CGRectMake(0, 35, ScreenWidht, ScreenHight - 64 - 49 - 35))
         mainScrollView.showsHorizontalScrollIndicator = false;
         mainScrollView.pagingEnabled = true;
         mainScrollView.delegate = self
-        mainScrollView.contentSize = CGSizeMake(ScreenWidht * 6 , ScreenHight - 64 - 49);
+        mainScrollView.contentSize = CGSizeMake(ScreenWidht * 6 , ScreenHight - 64 - 49 - 35);
         self.view.addSubview(mainScrollView)
         
-        mainTableView = UITableView(frame: CGRectMake(0, 0, ScreenWidht, ViewHeight), style: UITableViewStyle.Grouped)
+        mainTableView = UITableView(frame: CGRectMake(0, 0, ScreenWidht, ViewHeight - 35), style: UITableViewStyle.Grouped)
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        
+     
+  
+        mainTableView.header = MJChiBaoZiHeader(refreshingTarget: self, refreshingAction: Selector("qwe"))
+        
+        mainTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        mainTableView.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("mainLoadMoreData"))
         mainTableView.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "maincell")
         mainTableView.registerClass(ScrollewTableViewCell.self, forCellReuseIdentifier: "scrollerCell")
              mainScrollView.addSubview(mainTableView)
         
-        subtableView1 = UITableView(frame:CGRectMake(ScreenWidht, 0, ScreenWidht, ViewHeight))
-        subtableView2 = UITableView(frame:CGRectMake(ScreenWidht * 2, 0, ScreenWidht, ViewHeight))
-        subtableView3 = UITableView(frame:CGRectMake(ScreenWidht * 3, 0, ScreenWidht, ViewHeight))
-        subtableView4 = UITableView(frame:CGRectMake(ScreenWidht * 4, 0, ScreenWidht, ViewHeight))
-        subtableView5 = UITableView(frame:CGRectMake(ScreenWidht * 5, 0, ScreenWidht, ViewHeight))
+        subtableView1 = UITableView(frame:CGRectMake(ScreenWidht, 0, ScreenWidht, ViewHeight - 35))
+        subtableView2 = UITableView(frame:CGRectMake(ScreenWidht * 2, 0, ScreenWidht, ViewHeight - 35))
+        subtableView3 = UITableView(frame:CGRectMake(ScreenWidht * 3, 0, ScreenWidht, ViewHeight - 35))
+        subtableView4 = UITableView(frame:CGRectMake(ScreenWidht * 4, 0, ScreenWidht, ViewHeight - 35))
+        subtableView5 = UITableView(frame:CGRectMake(ScreenWidht * 5, 0, ScreenWidht, ViewHeight - 35))
         subtableView1.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub1")
         subtableView2.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub2")
         subtableView3.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "sub3")
@@ -282,6 +470,21 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         subtableView3.dataSource = self
         subtableView4.dataSource = self
         subtableView5.dataSource = self
+        subtableView1.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("liwuLoadMoreData"))
+         subtableView2.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("meishiLoadMoreData"))
+         subtableView3.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("shumaLoadMoreData"))
+//         subtableView4.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("yundongLoadMoreData"))
+//         subtableView5.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("yuleLoadMoreData"))
+        subtableView1.header = MJChiBaoZiHeader(refreshingTarget: self, refreshingAction: Selector("qwe"))
+        subtableView2.header = MJChiBaoZiHeader(refreshingTarget: self, refreshingAction: Selector("qwe"))
+        subtableView3.header = MJChiBaoZiHeader(refreshingTarget: self, refreshingAction: Selector("qwe"))
+        subtableView4.header = MJChiBaoZiHeader(refreshingTarget: self, refreshingAction: Selector("qwe"))
+        subtableView5.header = MJChiBaoZiHeader(refreshingTarget: self, refreshingAction: Selector("qwe"))
+        subtableView1.separatorStyle = UITableViewCellSeparatorStyle.None
+        subtableView2.separatorStyle = UITableViewCellSeparatorStyle.None
+        subtableView3.separatorStyle = UITableViewCellSeparatorStyle.None
+        subtableView4.separatorStyle = UITableViewCellSeparatorStyle.None
+        subtableView5.separatorStyle = UITableViewCellSeparatorStyle.None
         mainScrollView.addSubview(subtableView1)
         mainScrollView.addSubview(subtableView2)
         mainScrollView.addSubview(subtableView3)
@@ -294,6 +497,15 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         
         
         
+    }
+    func qwe() {
+        NSThread.sleepForTimeInterval(2)
+        self.mainTableView.header.endRefreshing()
+        self.subtableView1.header.endRefreshing()
+        self.subtableView2.header.endRefreshing()
+        self.subtableView3.header.endRefreshing()
+        self.subtableView4.header.endRefreshing()
+        self.subtableView5.header.endRefreshing()
     }
     /*
     // MARK: - Navigation
