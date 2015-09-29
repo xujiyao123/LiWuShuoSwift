@@ -23,22 +23,43 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eqk-ah-NGg">
-                        <rect key="frame" x="8" y="116.9999999865409" width="356" height="31"/>
+                        <rect key="frame" x="8" y="116.99999997303634" width="356" height="31"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fzw-n6-mEb">
+                        <rect key="frame" x="280" y="17" width="78" height="37"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mzG-iM-YFZ">
+                        <rect key="frame" x="309" y="26" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfont-xin" id="xYw-Eo-hxI">
+                        <rect key="frame" x="289" y="27" width="19" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="backLabel" destination="fzw-n6-mEb" id="55J-jd-ypL"/>
                 <outlet property="contentImageView" destination="B9u-TL-87t" id="EJw-5K-bGH"/>
                 <outlet property="contentLabel" destination="Eqk-ah-NGg" id="NJg-OZ-ukN"/>
+                <outlet property="likeLabel" destination="mzG-iM-YFZ" id="S3P-mp-H7p"/>
             </connections>
-            <point key="canvasLocation" x="81" y="191.5"/>
+            <point key="canvasLocation" x="-46" y="246.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="iconfont-xin" width="128" height="128"/>
         <image name="trip_edit_title_shadow" width="320" height="76"/>
     </resources>
 </document>

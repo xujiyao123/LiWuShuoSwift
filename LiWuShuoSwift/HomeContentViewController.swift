@@ -21,8 +21,7 @@ class HomeContentViewController: UIViewController , UIScrollViewDelegate , UIWeb
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        
+               
         self.title = "攻略详情"
  
         
@@ -70,6 +69,8 @@ class HomeContentViewController: UIViewController , UIScrollViewDelegate , UIWeb
             vc.url = clickURL
             self.navigationController?.pushViewController(vc, animated: true)
            
+            
+            
         }
         return true
         

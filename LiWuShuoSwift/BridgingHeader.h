@@ -18,7 +18,7 @@
 #import <MJRefresh.h>
 #import <UIButton+WebCache.h>
 #import <HMSegmentedControl.h>
-#import "ScrollewTableViewCell.h"
-#import "ScrollerModelHeader.h"
+//#import "ScrollewTableViewCell.h"
+//#import "ScrollerModelHeader.h"
 #import "MJChiBaoZiHeader.h"
 #endif /* BridgingHeader_h */

@@ -78,7 +78,9 @@
         
         ScrollerModelHeader * helder = [[ScrollerModelHeader alloc]init];
         helder = (ScrollerModelHeader *)model[i];
-       
+        
+        
+        
         [self.image sd_setImageWithURL:[NSURL URLWithString:helder.image_url]];
         
         [self.scrollView addSubview:_image];
@@ -86,9 +88,13 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         //  button.backgroundColor = [UIColor redColor];
         button.frame = CGRectMake(ScreenWidth * i  , 0 * Height, ScreenWidth , [self scrollerHeight]);
-    //    button.titleLabel.text = [model[i] webURL];
+        if ([helder.type isEqualToString:@"collection"]) {
+            NSLog(@"%lu" , helder.traget_id);
+            
+           // button.titleLabel.text = helder.traget_id;
+        }
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-        //    button.titleLabel.text = [dataSource[i]oid] ;
+       
         _count = i;
         [self.scrollView addSubview:button];
         

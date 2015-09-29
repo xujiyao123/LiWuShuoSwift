@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate ,UIScrollViewDelegate  {
+class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDelegate ,UIScrollViewDelegate ,scrollerProtocol {
     
     var seg : SegView!
     var mainScrollView :UIScrollView!
@@ -36,6 +36,9 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
     var shumaMore: String?
     var yundongMore:String?
     var yuleMore: String?
+    
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,9 +108,9 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
             
             if indexPath.section == 0 {
                 if indexPath.row == 0 {
-                   let cell = tableView.dequeueReusableCellWithIdentifier("scrollerCell", forIndexPath: indexPath) as! ScrollewTableViewCell
-                    cell.drawCellWitharray(self.scrollerDataSources)
-                    
+                   let cell = tableView.dequeueReusableCellWithIdentifier("scrollerCell", forIndexPath: indexPath) as! ScrollerTableViewCell
+                    cell.drawCellWithArray(self.scrollerDataSources)
+                    cell.delegate = self
                     return cell
                     
                 }
@@ -329,6 +332,18 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func scrollerButtonIsTouch(button: UIButton?) {
+        let vc = CollectionViewController()
+        if button!.tag != 0 {
+            vc.id = (button?.tag)! - 100
+        }
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+
+    
     func dataSourceWithArray(array:NSMutableArray , indexpatch:NSIndexPath) -> HomeContentModel{
         
         let model = array[indexpatch.row] as! HomeContentModel
@@ -420,8 +435,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         self.navigationController?.navigationBar.barTintColor = NavColor
         
         self.title = "礼物说"
-        let attributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes
+
         
         seg = SegView(frame: CGRectMake(0, 0, ScreenWidht, 35))
         seg.seg.addTarget(self, action: Selector("segAction:"), forControlEvents: UIControlEvents.ValueChanged)
@@ -447,7 +461,7 @@ class HomeViewController: UIViewController,UITableViewDataSource ,UITableViewDel
         mainTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         mainTableView.footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: Selector("mainLoadMoreData"))
         mainTableView.registerClass(ContentTableViewCell.self, forCellReuseIdentifier: "maincell")
-        mainTableView.registerClass(ScrollewTableViewCell.self, forCellReuseIdentifier: "scrollerCell")
+        mainTableView.registerClass(ScrollerTableViewCell.self, forCellReuseIdentifier: "scrollerCell")
              mainScrollView.addSubview(mainTableView)
         
         subtableView1 = UITableView(frame:CGRectMake(ScreenWidht, 0, ScreenWidht, ViewHeight - 35))

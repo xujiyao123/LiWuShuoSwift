@@ -24,8 +24,14 @@ private func forInWtihContentData(result:AnyObject) -> NSMutableDictionary {
         
         let model = HomeContentModel()
         model.content_url = dic.objectForKey("content_url") as? String
+        if dic.objectForKey("cover_image_url") == nil {
+            model.cover_image_url = dic.objectForKey("image_url") as? String
+            
+        }else {
         model.cover_image_url = dic.objectForKey("cover_image_url") as? String
-        model.likes_count = dic.objectForKey("likes_count") as? String
+        }
+        model.likes_count = dic.objectForKey("likes_count") as? NSInteger
+       
         model.title = dic.objectForKey("title") as? String
         dataArray.addObject(model)
     }
@@ -43,7 +49,7 @@ class HomeScrollerModel: NSObject ,NetWorkProtocol {
     
     var image_url : String?
     
-    var target_id : String?
+    var target_id : Int?
     
     var type : String?
     
@@ -72,7 +78,8 @@ class HomeScrollerModel: NSObject ,NetWorkProtocol {
             
             let model = HomeScrollerModel()
             model.image_url = dic.objectForKey("image_url") as? String
-            model.target_id = dic.objectForKey("target_id") as? String
+            let target = dic.objectForKey("target") as? NSDictionary
+            model.target_id =  target?.objectForKey("id") as? Int
             model.type = dic.objectForKey("type") as? String
             model.target_url = dic.objectForKey("target_url") as? String
             
@@ -80,6 +87,7 @@ class HomeScrollerModel: NSObject ,NetWorkProtocol {
         }
         
         NSNotificationCenter.defaultCenter().postNotificationName("HOME_SCROLLER_DATA", object: dataArray)
+               
         
     }
     func requestLose(error: NSError, operation: AFHTTPRequestOperation) {
@@ -94,7 +102,7 @@ class HomeContentModel: NSObject  ,NetWorkProtocol{
     
     var content_url: String?
     var cover_image_url: String?
-    var likes_count: String?
+    var likes_count: NSInteger?
     var title:String?
     var next_url:String?
     

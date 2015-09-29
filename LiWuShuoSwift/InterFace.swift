@@ -19,6 +19,17 @@ let HOME_SCROLLER_INTERFACE = "http://api.liwushuo.com/v2/banners?channel=iOS"
 func HOME_CONTENT_INTERFACE(TYPE_CODE:Int) -> String {
     return "http://api.liwushuo.com/v2/channels/\(TYPE_CODE)/items?ad=1&gender=1&generation=1&limit=20&offset=0"
 }
+func COLLECTION_INTERFACE(TYPE:Int) ->String {
+    return "http://api.liwushuo.com/v2/collections/\(TYPE)/posts?gender=1&generation=1&limit=20&offset=0"
+}
+
+//http://api.liwushuo.com/v2/promotions?gender=1&generation=1
+//http://api.liwushuo.com/v2/collections/22/posts?gender=1&generation=1&limit=20&offset=0
+//http://api.liwushuo.com/v2/brands/1
+
+
+//http://api.liwushuo.com/v2/search/item?keyword=%E9%83%BD%E8%A7%89%E5%BE%97&limit=20&offset=0&sort=
+//http://api.liwushuo.com/v2/search/post?keyword=%E9%83%BD%E8%A7%89%E5%BE%97&limit=20&offset=0&sort=
 func IS_IPHONE5() ->Bool {
     if ScreenWidht == 320 {
         return true
@@ -41,10 +52,10 @@ class InterFace: NSObject {
         let type = TypeViewController()
         let my = MyViewController()
       
-        let nav1 = UINavigationController(rootViewController: home)
-        let nav2 = UINavigationController(rootViewController: item)
-        let nav3 = UINavigationController(rootViewController: type)
-        let nav4 = UINavigationController(rootViewController: my)
+        let nav1 = MainNavigationController(rootViewController: home)
+        let nav2 = MainNavigationController(rootViewController: item)
+        let nav3 = MainNavigationController(rootViewController: type)
+        let nav4 = MainNavigationController(rootViewController: my)
         nav1.navigationBar.translucent = false
         nav2.navigationBar.translucent = false
         nav3.navigationBar.translucent = false

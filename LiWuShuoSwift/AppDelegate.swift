@@ -19,15 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     //   NSBundle.mainBundle().loadNibNamed("Launch Screen", owner: nil, options: nil)
        
+      //  UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+         UINavigationBar.appearance().shadowImage = UIImage()
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
        
-        
+     
         
         
         let tab = InterFace.CreateTabBar()
         
-        NSThread.sleepForTimeInterval(2)
+      //  NSThread.sleepForTimeInterval(2)
         
         window?.rootViewController = tab
         

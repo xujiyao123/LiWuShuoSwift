@@ -10,6 +10,9 @@
 		AC04BCED626AF70FD3262CFF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 739ECACC688DDFD9F5331E4E /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		B725F9A91BB93AAD0031A390 /* MJChiBaoZiHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B725F9A81BB93AAD0031A390 /* MJChiBaoZiHeader.m */; settings = {ASSET_TAGS = (); }; };
 		B725F9AB1BB944C60031A390 /* HomeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725F9AA1BB944C60031A390 /* HomeWebViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B76E609F1BBA3B1A00809F6C /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76E609E1BBA3B1A00809F6C /* CollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B76E60A11BBA3EAF00809F6C /* LWSTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76E60A01BBA3EAF00809F6C /* LWSTypeModel.swift */; settings = {ASSET_TAGS = (); }; };
+		B777E7F81BBA662200CA7CFC /* ScrollerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777E7F71BBA662200CA7CFC /* ScrollerTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B78E0B621BB4F90300DF0356 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		B78E0B631BB4F90300DF0356 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		B798472D1BAD094000B6ED60 /* NetWorkRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B798472C1BAD094000B6ED60 /* NetWorkRequestHelper.swift */; settings = {ASSET_TAGS = (); }; };
@@ -18,6 +21,7 @@
 		B7B780891BAE6644007B2CB4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B780881BAE6643007B2CB4 /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B7C24C161BB8EA3E00415359 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C24C151BB8EA3E00415359 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B7C24C181BB8EB9F00415359 /* LaunchImage-800-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C24C171BB8EB9F00415359 /* LaunchImage-800-667h@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B7CBD9E91BBA7BAB007C6B2A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBD9E81BBA7BAB007C6B2A /* MainNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		B7D3A3491BA68387008634B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3A3481BA68387008634B9 /* AppDelegate.swift */; };
 		B7D3A3501BA68387008634B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D3A34F1BA68387008634B9 /* Assets.xcassets */; };
 		B7D3A3701BA6A339008634B9 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D3A3621BA6A339008634B9 /* Constraint.swift */; };
@@ -57,6 +61,9 @@
 		B725F9A71BB93AAD0031A390 /* MJChiBaoZiHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChiBaoZiHeader.h; sourceTree = "<group>"; };
 		B725F9A81BB93AAD0031A390 /* MJChiBaoZiHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiHeader.m; sourceTree = "<group>"; };
 		B725F9AA1BB944C60031A390 /* HomeWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWebViewController.swift; sourceTree = "<group>"; };
+		B76E609E1BBA3B1A00809F6C /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		B76E60A01BBA3EAF00809F6C /* LWSTypeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWSTypeModel.swift; sourceTree = "<group>"; };
+		B777E7F71BBA662200CA7CFC /* ScrollerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollerTableViewCell.swift; sourceTree = "<group>"; };
 		B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
 		B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 		B798472C1BAD094000B6ED60 /* NetWorkRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkRequestHelper.swift; sourceTree = "<group>"; };
@@ -65,6 +72,7 @@
 		B7B780881BAE6643007B2CB4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		B7C24C151BB8EA3E00415359 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B7C24C171BB8EB9F00415359 /* LaunchImage-800-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-800-667h@2x.png"; path = "Assets.xcassets/image/LaunchImage-800.imageset/LaunchImage-800-667h@2x.png"; sourceTree = "<group>"; };
+		B7CBD9E81BBA7BAB007C6B2A /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		B7D3A3451BA68387008634B9 /* LiWuShuoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiWuShuoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D3A3481BA68387008634B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7D3A34F1BA68387008634B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -232,6 +240,8 @@
 				B7F8DA151BB54D7200A4CF32 /* HomeContentViewController.swift */,
 				B7F8DA161BB54D7200A4CF32 /* HomeContentViewController.xib */,
 				B725F9AA1BB944C60031A390 /* HomeWebViewController.swift */,
+				B76E609E1BBA3B1A00809F6C /* CollectionViewController.swift */,
+				B7CBD9E81BBA7BAB007C6B2A /* MainNavigationController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -283,6 +293,7 @@
 				B7F492811BAEB5A40035E409 /* ScrollerModelHeader.h */,
 				B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */,
 				B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */,
+				B777E7F71BBA662200CA7CFC /* ScrollerTableViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -291,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F4927A1BAE97C00035E409 /* LWSHomeModel.swift */,
+				B76E60A01BBA3EAF00809F6C /* LWSTypeModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -423,6 +435,7 @@
 				B7D3A3701BA6A339008634B9 /* Constraint.swift in Sources */,
 				B7D3A3791BA6A339008634B9 /* LayoutConstraint.swift in Sources */,
 				B7D3A3761BA6A339008634B9 /* Debugging.swift in Sources */,
+				B76E60A11BBA3EAF00809F6C /* LWSTypeModel.swift in Sources */,
 				B725F9A91BB93AAD0031A390 /* MJChiBaoZiHeader.m in Sources */,
 				B7D3A3891BA6A8DD008634B9 /* HomeViewController.swift in Sources */,
 				B7D3A3771BA6A339008634B9 /* EdgeInsets.swift in Sources */,
@@ -434,10 +447,13 @@
 				B7F8DA171BB54D7200A4CF32 /* HomeContentViewController.swift in Sources */,
 				B7D3A3491BA68387008634B9 /* AppDelegate.swift in Sources */,
 				B798472D1BAD094000B6ED60 /* NetWorkRequestHelper.swift in Sources */,
+				B76E609F1BBA3B1A00809F6C /* CollectionViewController.swift in Sources */,
 				B7D3A3721BA6A339008634B9 /* ConstraintDescription.swift in Sources */,
+				B7CBD9E91BBA7BAB007C6B2A /* MainNavigationController.swift in Sources */,
 				B7F4927B1BAE97C00035E409 /* LWSHomeModel.swift in Sources */,
 				B7D3A3751BA6A339008634B9 /* ConstraintRelation.swift in Sources */,
 				B7D3A3911BA6A8FF008634B9 /* TypeViewController.swift in Sources */,
+				B777E7F81BBA662200CA7CFC /* ScrollerTableViewCell.swift in Sources */,
 				B7D3A37A1BA6A339008634B9 /* SnapKit.swift in Sources */,
 				B725F9AB1BB944C60031A390 /* HomeWebViewController.swift in Sources */,
 				B7D3A3731BA6A339008634B9 /* ConstraintItem.swift in Sources */,

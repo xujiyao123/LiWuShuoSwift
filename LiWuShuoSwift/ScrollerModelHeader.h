@@ -19,7 +19,7 @@
 
 
 @property (nonatomic ,retain)NSString * image_url ;
-@property (nonatomic ,retain)NSString * traget_id ;
+@property (nonatomic ,assign)NSInteger traget_id ;
 @property (nonatomic ,retain)NSString * type;
 @property (nonatomic ,retain)NSString * target_url;
 @end
