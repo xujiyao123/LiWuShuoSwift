@@ -48,8 +48,6 @@
 		B7D3A3961BA6A90A008634B9 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D3A3941BA6A90A008634B9 /* MyViewController.xib */; };
 		B7E184F61BA6BBEF002E7169 /* SegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E184F51BA6BBEF002E7169 /* SegView.swift */; settings = {ASSET_TAGS = (); }; };
 		B7F4927B1BAE97C00035E409 /* LWSHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F4927A1BAE97C00035E409 /* LWSHomeModel.swift */; settings = {ASSET_TAGS = (); }; };
-		B7F492801BAEB1C50035E409 /* ScrollewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F4927F1BAEB1C50035E409 /* ScrollewTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		B7F492851BAEBC1C0035E409 /* ScrollerModelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F492841BAEBC1C0035E409 /* ScrollerModelHeader.m */; settings = {ASSET_TAGS = (); }; };
 		B7F8DA171BB54D7200A4CF32 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F8DA151BB54D7200A4CF32 /* HomeContentViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		B7F8DA181BB54D7200A4CF32 /* HomeContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F8DA161BB54D7200A4CF32 /* HomeContentViewController.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -105,10 +103,6 @@
 		B7D3A3941BA6A90A008634B9 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 		B7E184F51BA6BBEF002E7169 /* SegView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegView.swift; sourceTree = "<group>"; };
 		B7F4927A1BAE97C00035E409 /* LWSHomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWSHomeModel.swift; sourceTree = "<group>"; };
-		B7F4927E1BAEB1C50035E409 /* ScrollewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollewTableViewCell.h; sourceTree = "<group>"; };
-		B7F4927F1BAEB1C50035E409 /* ScrollewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollewTableViewCell.m; sourceTree = "<group>"; };
-		B7F492811BAEB5A40035E409 /* ScrollerModelHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollerModelHeader.h; sourceTree = "<group>"; };
-		B7F492841BAEBC1C0035E409 /* ScrollerModelHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollerModelHeader.m; sourceTree = "<group>"; };
 		B7F8DA151BB54D7200A4CF32 /* HomeContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		B7F8DA161BB54D7200A4CF32 /* HomeContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeContentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,11 +280,7 @@
 			children = (
 				B725F9A71BB93AAD0031A390 /* MJChiBaoZiHeader.h */,
 				B725F9A81BB93AAD0031A390 /* MJChiBaoZiHeader.m */,
-				B7F492841BAEBC1C0035E409 /* ScrollerModelHeader.m */,
-				B7F4927E1BAEB1C50035E409 /* ScrollewTableViewCell.h */,
-				B7F4927F1BAEB1C50035E409 /* ScrollewTableViewCell.m */,
 				B7E184F51BA6BBEF002E7169 /* SegView.swift */,
-				B7F492811BAEB5A40035E409 /* ScrollerModelHeader.h */,
 				B78E0B601BB4F90300DF0356 /* ContentTableViewCell.swift */,
 				B78E0B611BB4F90300DF0356 /* ContentTableViewCell.xib */,
 				B777E7F71BBA662200CA7CFC /* ScrollerTableViewCell.swift */,
@@ -431,7 +421,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7F492851BAEBC1C0035E409 /* ScrollerModelHeader.m in Sources */,
 				B7D3A3701BA6A339008634B9 /* Constraint.swift in Sources */,
 				B7D3A3791BA6A339008634B9 /* LayoutConstraint.swift in Sources */,
 				B7D3A3761BA6A339008634B9 /* Debugging.swift in Sources */,
@@ -442,7 +431,6 @@
 				B7D3A3711BA6A339008634B9 /* ConstraintAttributes.swift in Sources */,
 				B7D3A3741BA6A339008634B9 /* ConstraintMaker.swift in Sources */,
 				B7D3A3951BA6A90A008634B9 /* MyViewController.swift in Sources */,
-				B7F492801BAEB1C50035E409 /* ScrollewTableViewCell.m in Sources */,
 				B7D3A37C1BA6A339008634B9 /* ViewController+SnapKit.swift in Sources */,
 				B7F8DA171BB54D7200A4CF32 /* HomeContentViewController.swift in Sources */,
 				B7D3A3491BA68387008634B9 /* AppDelegate.swift in Sources */,
