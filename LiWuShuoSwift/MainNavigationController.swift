@@ -8,10 +8,16 @@
 
 import UIKit
 
-class MainNavigationController: UINavigationController {
+class MainNavigationController: UINavigationController ,UIGestureRecognizerDelegate{
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+   override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return UIStatusBarAnimation.Fade
+    }
+//   override func prefersStatusBarHidden() -> Bool {
+//        return true
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.tintColor = UIColor.whiteColor()
@@ -19,6 +25,24 @@ class MainNavigationController: UINavigationController {
         let attributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationBar.titleTextAttributes = attributes
         // Do any additional setup after loading the view.
+        
+        
+        let target = self.interactivePopGestureRecognizer?.delegate
+        let pan = UIPanGestureRecognizer(target: target, action: Selector("handleNavigationTransition:"))
+        pan.delegate = self
+        self.view.addGestureRecognizer(pan)
+        self.interactivePopGestureRecognizer?.enabled = false
+        
+        
+    }
+    func handleNavigationTransition(pan: UIPanGestureRecognizer) {
+    
+    }
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if self.childViewControllers.count == 1 {
+            return false
+        }
+        return true
     }
 
     override func didReceiveMemoryWarning() {
